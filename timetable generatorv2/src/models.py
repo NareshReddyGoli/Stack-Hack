@@ -3,7 +3,24 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 
-from pydantic import BaseModel, Field, field_validator
+try:
+    from pydantic import BaseModel, Field, validator
+    PYDANTIC_V2 = False
+except ImportError:
+    try:
+        from pydantic import BaseModel, Field, field_validator as validator
+        PYDANTIC_V2 = True
+    except ImportError:
+        # Fallback if pydantic is not available
+        class BaseModel:
+            pass
+        def Field(*args, **kwargs):
+            return None
+        def validator(*args, **kwargs):
+            def decorator(func):
+                return func
+            return decorator
+        PYDANTIC_V2 = False
 
 
 class DayPeriod(BaseModel):
@@ -32,10 +49,15 @@ class Course(BaseModel):
     lab_sessions_per_week: int = Field(0, ge=0)
     lab_block_size: int = Field(2, ge=0)
 
-    @field_validator("lab_sessions_per_week")
-    @classmethod
-    def labs_impl_requires_lab_flag(cls, v, info):
-        if v and not info.data.get("is_lab", False):
+    @validator("lab_sessions_per_week")
+    def labs_impl_requires_lab_flag(cls, v, values=None):
+        # Handle both Pydantic v1 and v2
+        if PYDANTIC_V2 and hasattr(values, 'data'):
+            values_dict = values.data
+        else:
+            values_dict = values or {}
+        
+        if v and not values_dict.get("is_lab", False):
             raise ValueError("lab_sessions_per_week > 0 but is_lab is False")
         return v
 
@@ -79,7 +101,8 @@ class ProblemData(BaseModel):
     faculty_courses: List[FacultyCourseAssignment]
     rooms: Optional[List[Room]] = None
 
-    model_config = {"arbitrary_types_allowed": True}
+    class Config:
+        arbitrary_types_allowed = True
 
     def build_timeslots(self) -> List[Timeslot]:
         sorted_rows = sorted(self.day_periods, key=lambda r: (r.day_index, r.period_index))
