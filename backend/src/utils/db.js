@@ -4,7 +4,7 @@ let isConnected = false;
 
 async function connectToDatabase(uri) {
   if (isConnected) return;
-  if (!uri) throw new Error('MONGO_URI is not set');
+  if (!uri) throw new Error('MONGODB_URI is not set');
   mongoose.set('strictQuery', true);
   try {
     await mongoose.connect(uri);
