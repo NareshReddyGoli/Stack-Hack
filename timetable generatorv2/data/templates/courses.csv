@@ -1,0 +1,13 @@
+course_id,course_name,is_lab,lecture_periods_per_week,lab_sessions_per_week,lab_block_size
+CD,Compiler Design,0,6,0,0
+DMT,Data Mining Techniques,0,3,0,0
+DMT-LAB,Data Mining Techniques Lab,1,0,1,2
+CN,Computer Networks,0,4,0,0
+CN-LAB,Computer Networks Lab,1,0,1,2
+ML,Machine Learning,0,4,0,0
+ML-L,Machine Learning Lab,1,0,1,2
+MSD,MERN Stack Development,1,0,4,2
+SS-LAB,Soft skills,1,0,1,2
+IA1,Introduction to AI,0,5,0,0
+IDP,Intra department project,1,0,1,2
+WT-L,Web Technologies Lab,1,0,1,2

@@ -1,0 +1,9 @@
+.csv-table { border-collapse: collapse; }
+.csv-table th, .csv-table td { border: 1px solid var(--color-border); padding: .4rem .5rem; }
+.cell-invalid { background: rgba(239,68,68,.12); }
+.modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: grid; place-items: center; }
+.modal { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: .8rem; padding: 1rem; width: min(800px, 95vw); }
+.upload-progress .bar { height: .6rem; background: rgba(255,255,255,.05); border: 1px solid var(--color-border); border-radius: 999px; overflow: hidden; }
+.upload-progress .bar-fill { height: 100%; background: var(--color-primary); }
+.upload-progress .nums { color: var(--color-muted); font-size: .9rem; margin-top: .35rem; }
+

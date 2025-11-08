@@ -1,0 +1,24 @@
+# Backend (Node/Express)
+node_modules/
+
+# Env
+.env
+.env.*
+!.env.sample
+
+# Logs & coverage
+logs/
+*.log
+*.log.*
+coverage/
+
+# Uploads/temp (if any)
+uploads/
+tmp/
+
+# Editors/OS
+.DS_Store
+.idea/
+.vscode/
+
+

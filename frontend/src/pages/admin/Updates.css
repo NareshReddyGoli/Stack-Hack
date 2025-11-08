@@ -1,0 +1,136 @@
+.updates-container {
+  padding: 1.5rem;
+}
+
+.updates-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.updates-header h2 {
+  margin: 0;
+  color: #2d3748;
+  font-size: 1.5rem;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+}
+
+.filter-select {
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid #e2e8f0;
+  background-color: white;
+  color: #4a5568;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.updates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.update-item {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid;
+}
+
+.update-item.class {
+  border-left-color: #4299e1;
+}
+
+.update-item.event {
+  border-left-color: #ed8936;
+}
+
+.update-item.exam {
+  border-left-color: #9f7aea;
+}
+
+.update-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.update-text {
+  color: #2d3748;
+  font-size: 0.9375rem;
+}
+
+.update-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.update-time {
+  color: #718096;
+}
+
+.update-type {
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 0.6875rem;
+  background-color: #edf2f7;
+  color: #4a5568;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #718096;
+}
+
+.no-updates {
+  text-align: center;
+  padding: 2rem;
+  color: #718096;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+  text-align: center;
+  padding: 1rem;
+  color: #e53e3e;
+  background-color: #fff5f5;
+  border: 1px solid #fc8181;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.delete-update-btn {
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-left: auto;
+}
+
+.delete-update-btn:hover {
+  background-color: #c53030;
+}
+
+.update-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
