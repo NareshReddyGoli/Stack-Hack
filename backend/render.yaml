@@ -3,6 +3,7 @@ services:
     name: stack-hack-backend
     env: node
     plan: free
+    rootDir: ./backend
     buildCommand: npm install --production
     startCommand: npm start
     envVars:
@@ -10,4 +11,4 @@ services:
         value: production
       - key: PORT
         value: 10000
-    autoDeploy: false
+    autoDeploy: true
