@@ -1,13 +1,9 @@
-ortools>=9.9.3963
-pandas>=2.1.0
-pydantic>=1.10.14
-streamlit>=1.32.0
- pandas==2.2.2
- numpy==2.0.2
- pydantic==2.9.2
- pydantic-core==2.23.4
- ortools==9.10.4067
- streamlit==1.39.0
- openpyxl==3.1.5
- python-dateutil==2.9.0.post0
+ortools==9.10.4067
+pandas==2.2.2
+numpy==2.0.2
+pydantic==2.9.2
+pydantic-core==2.23.4
+streamlit==1.39.0
+openpyxl==3.1.5
+python-dateutil==2.9.0.post0
 
