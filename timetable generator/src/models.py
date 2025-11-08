@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator
 
 
 class DayPeriod(BaseModel):
@@ -32,9 +32,10 @@ class Course(BaseModel):
     lab_sessions_per_week: int = Field(0, ge=0)
     lab_block_size: int = Field(2, ge=0)
 
-    @validator("lab_sessions_per_week")
-    def labs_impl_requires_lab_flag(cls, v, values):
-        if v and not values.get("is_lab", False):
+    @field_validator("lab_sessions_per_week")
+    @classmethod
+    def labs_impl_requires_lab_flag(cls, v, info):
+        if v and not info.data.get("is_lab", False):
             raise ValueError("lab_sessions_per_week > 0 but is_lab is False")
         return v
 
@@ -78,8 +79,7 @@ class ProblemData(BaseModel):
     faculty_courses: List[FacultyCourseAssignment]
     rooms: Optional[List[Room]] = None
 
-    class Config:
-        arbitrary_types_allowed = True
+    model_config = {"arbitrary_types_allowed": True}
 
     def build_timeslots(self) -> List[Timeslot]:
         sorted_rows = sorted(self.day_periods, key=lambda r: (r.day_index, r.period_index))
