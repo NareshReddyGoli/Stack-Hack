@@ -203,6 +203,45 @@ function gridArrayToCsv(grid) {
   return lines.join('\n');
 }
 
+// Streamlit Timetable Generator Integration
+router.get('/streamlit-generator/url', async (_req, res) => {
+  try {
+    const streamlitUrl = 'https://stack-hack-eosilgrwg4dkaplzu9mkwr.streamlit.app/';
+    res.json({ 
+      success: true, 
+      url: streamlitUrl,
+      message: 'Streamlit Timetable Generator URL'
+    });
+  } catch (error) {
+    console.error('Error getting Streamlit URL:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: 'Failed to get Streamlit URL' 
+    });
+  }
+});
+
+// Health check for Streamlit app
+router.get('/streamlit-generator/health', async (_req, res) => {
+  try {
+    const streamlitUrl = 'https://stack-hack-eosilgrwg4dkaplzu9mkwr.streamlit.app/';
+    const response = await fetch(streamlitUrl);
+    const ok = response.ok;
+    
+    res.json({ 
+      ok, 
+      status: response.status,
+      message: ok ? 'Streamlit app is running' : 'Streamlit app is down'
+    });
+  } catch (error) {
+    console.error('Streamlit health check failed:', error);
+    res.json({ 
+      ok: false, 
+      error: error.message 
+    });
+  }
+});
+
 module.exports = router;
 
 
