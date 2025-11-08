@@ -49,21 +49,35 @@ app.use('/api/notifications', notificationsRoutes);
 app.use('/api/faculty', facultyRoutes);
 app.use('/api/student', studentRoutes);
 
-app.get('/health', (_req, res) => {
-  res.json({ status: 'ok' });
+// Root route
+app.get('/', (_req, res) => {
+  res.json({ 
+    message: 'Stack Hack Backend API',
+    status: 'running',
+    version: '1.0.0',
+    endpoints: {
+      health: '/health',
+      auth: '/api/auth',
+      admin: '/api/admin',
+      faculty: '/api/faculty',
+      student: '/api/student',
+      notifications: '/api/notifications'
+    }
+  });
 });
 
-// Bind server to the standard development port 4000 only to avoid accidental overrides
-const PORT = 4000;
 app.get('/health', (_req, res) => {
-  res.json({ status: 'ok' });
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
+
+// Use environment PORT or default to 4000
+const PORT = process.env.PORT || 4000;
 async function start() {
   if (!process.env.JWT_SECRET) {
     // eslint-disable-next-line no-console
     console.warn('Warning: JWT_SECRET is not set. Login will fail. Set it in your .env.');
   }
-  await connectToDatabase(process.env.MONGO_URI);
+  await connectToDatabase(process.env.MONGODB_URI);
   await seedInitialAdmin();
   await seedTestStudent();
   const server = http.createServer(app);
